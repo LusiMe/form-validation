@@ -7,6 +7,27 @@
   pointer-events: none;
 }
 
+a {
+  color: aliceblue
+}
+
+a:hover {
+  color: hotpink;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: azure
+}
+
+::selection {
+  color: white;
+  background: yellow;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -32,6 +53,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
