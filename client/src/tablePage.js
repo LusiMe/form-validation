@@ -16,10 +16,24 @@ class Table extends Component {
 
 			users: []
 		};
+		this.removeButtonOnClick = this.removeButtonOnClick.bind(this);
 	}
+
 	async componentDidMount() {
 		const users = await getAll();
 		this.setState({ users: users });
+	}
+
+	async removeButtonOnClick(_id) {
+		const result = await fetch(`http://localhost:4000/form/${_id}`, {
+			method: 'DELETE'
+		});
+		this.removeRow(_id);
+	}
+
+	removeRow(_id) {
+		const fl = this.state.users.filter((user) => user._id !== _id);
+		this.setState({ users: fl });
 	}
 
 	renderTableData() {
@@ -32,6 +46,9 @@ class Table extends Component {
 					<td>{secondName}</td>
 					<td>{phone}</td>
 					<td>{email}</td>
+					<td>
+						<button className="removeButton" onClick={() => this.removeButtonOnClick(_id)} />
+					</td>
 				</tr>
 			);
 		});
@@ -48,7 +65,6 @@ class Table extends Component {
 		);
 	}
 	render() {
-		//Whenever our class runs, render method will be called automatically, it may have already defined in the constructor behind the scene.
 		return (
 			<div>
 				<h1>Users</h1>
@@ -56,7 +72,7 @@ class Table extends Component {
 		);
 	}
 	renderTableHeader() {
-		let header = [ 'id', 'First Name', 'Second Name', 'Phone', 'email' ];
+		let header = [ 'id', 'First Name', 'Second Name', 'Phone', 'email', 'remove' ];
 		return header.map((key, index) => {
 			return <th key={index}>{key.toUpperCase()}</th>;
 		});

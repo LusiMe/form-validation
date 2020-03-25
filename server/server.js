@@ -65,4 +65,13 @@ app.post('/form', async function(request, response) {
 	await sv.save((err, doc) => response.json({ _id: doc._id }));
 });
 
+//remove row
+app.delete('/form/:id', async function(req, res) {
+	const myquery = { _id: req.params.id };
+	await Form.deleteOne(myquery, function(err, obj) {
+		if (err) return res.send(500, { error: err });
+		return res.send(200, { msg: 'Succesfully delete.' });
+	});
+});
+
 app.listen(4000, () => console.log('server started'));
