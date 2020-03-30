@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const emailCheck = /[a-z0-9._%+!$&*=^|~#%'`?{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,16})/;
 const phoneCheck = /^\d+$/;
 const nameCheck = /^[A-Za-z]*$/;
 
 const Form = () => {
+	const { _id } = useParams();
 	const [ firstName, setName ] = useState('');
 	const [ secondName, setSecondName ] = useState('');
 	const [ phone, setPhone ] = useState('');
@@ -25,7 +27,7 @@ const Form = () => {
 	const save = async (params) => {
 		const headers = { 'Content-Type': 'application/json' };
 		let result;
-		const _id = localStorage.getItem('_id');
+
 		if (_id) {
 			//updating on lust ID
 			result = await fetch(`http://localhost:4000/form/${_id}`, {
@@ -48,13 +50,13 @@ const Form = () => {
 	};
 	useEffect(() => {
 		const setForm = async () => {
-			const waitForForm = await getById(localStorage.getItem('_id'));
+			const waitForForm = await getById(_id);
 			setName(waitForForm.firstName);
 			setSecondName(waitForForm.secondName);
 			setPhone(waitForForm.phone);
 			setEmail(waitForForm.email);
 		};
-		if (localStorage.getItem('_id')) {
+		if (_id) {
 			setForm();
 		}
 	}, []);
@@ -76,13 +78,13 @@ const Form = () => {
 				setErrorSecondName('');
 			}
 
-			if (!phoneCheck.test(phone) && phone.length > 0) {
+			if (!phoneCheck.test(phone) && phone && phone.length > 0) {
 				setErrorPhone('only numbers required');
 			} else {
 				setErrorPhone('');
 			}
 
-			if (!emailCheck.test(email) && email.length > 2) {
+			if (!emailCheck.test(email) && email && email.length > 2) {
 				setErrorEmail('invalid email');
 			} else {
 				setErrorEmail('');
@@ -111,7 +113,11 @@ const Form = () => {
 				<input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 				<div style={{ display: errorEmail.length === 0 ? 'none' : 'block' }}>{errorEmail}</div>
 
-				<button onClick={() => save({ firstName, secondName, email, phone })}>Verify</button>
+				<Link to="/tablePage">
+					<button className="verifyButton" onClick={() => save({ firstName, secondName, email, phone })}>
+						Verify
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

@@ -7,7 +7,7 @@ import Table from './tablePage';
 export default function App() {
 	return (
 		<Router>
-			<div>
+			<div className="wrapper">
 				<nav>
 					<ul>
 						<li>
@@ -22,7 +22,7 @@ export default function App() {
 				{/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
 				<Switch>
-					<Route path="/formPage">
+					<Route path="/formPage/:_id">
 						<FormPage />
 					</Route>
 					<Route path="/tablePage">

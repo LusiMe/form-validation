@@ -28,12 +28,12 @@ h3 {
 
 .form {
   background: #0e101c;
-  max-width: 400px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
 .row {
-  max-width: 400px;
+
   text-align: center
 }
 
@@ -131,7 +131,7 @@ hr {
   margin-top: 30px;
 }
 
-button {
+.verifyButton {
   display: block;
   appearance: none;
   margin-top: 40px;

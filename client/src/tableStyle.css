@@ -53,10 +53,18 @@ thead {
   table-layout: fixed;
 }
 
-.removeButton {
-  width: 1em;
-  color: red;
+.removeButton,
+.addButton,
+.editButton {
   margin: 0;
+  padding: 0;
+
+}
+
+.trash-icon,
+.add-icon,
+.edit-icon {
+  width: 30px;
 }
 
 /* tbody::-webkit-scrollbar {

@@ -23,6 +23,16 @@ ul {
   color: azure
 }
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav {
+  display: none;
+}
+
 ::selection {
   color: white;
   background: yellow;

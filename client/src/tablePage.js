@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './tableStyle.css';
+import { Link } from 'react-router-dom';
+import trashItem from './img/icons8-trash.svg';
+import addItem from './img/icons8-add-80.png';
+import editItem from './img/icons8-edit.svg';
 
 const getAll = async () => {
 	const result = await fetch('http://localhost:4000/form/', {
@@ -10,10 +14,10 @@ const getAll = async () => {
 
 class Table extends Component {
 	constructor(props) {
-		super(props); //since we are extending class Table so we have to use super in order to override Component class constructor
+		super(props);
 		this.state = {
-			//state is by default an object
-
+			firstName: '',
+			email: '',
 			users: []
 		};
 		this.removeButtonOnClick = this.removeButtonOnClick.bind(this);
@@ -30,6 +34,14 @@ class Table extends Component {
 		});
 		this.removeRow(_id);
 	}
+	async editButtonOnClick(_id) {
+		const result = await fetch(`http://localhost:4000/form/${_id}`, {
+			method: 'PUT'
+		});
+		this.editRow(_id);
+	}
+
+	editRow(_id) {}
 
 	removeRow(_id) {
 		const fl = this.state.users.filter((user) => user._id !== _id);
@@ -47,32 +59,27 @@ class Table extends Component {
 					<td>{phone}</td>
 					<td>{email}</td>
 					<td>
-						<button className="removeButton" onClick={() => this.removeButtonOnClick(_id)} />
+						<button className="removeButton" onClick={() => this.removeButtonOnClick(_id)}>
+							<img className="trash-icon" src={trashItem} />
+						</button>
+						<Link to="/formPage">
+							<button className="addButton">
+								<img className="add-icon" src={addItem} />
+							</button>
+						</Link>
+						<Link to={`/formPage/${_id}`}>
+							<button className="editButton">
+								<img className="edit-icon" src={editItem} />
+							</button>
+						</Link>
 					</td>
 				</tr>
 			);
 		});
 	}
 
-	render() {
-		return (
-			<div>
-				<h1 id="title">Users</h1>
-				<table id="users">
-					<tbody>{this.renderTableData()}</tbody>
-				</table>
-			</div>
-		);
-	}
-	render() {
-		return (
-			<div>
-				<h1>Users</h1>
-			</div>
-		);
-	}
 	renderTableHeader() {
-		let header = [ 'id', 'First Name', 'Second Name', 'Phone', 'email', 'remove' ];
+		let header = [ 'id', 'First Name', 'Second Name', 'Phone', 'email', 'actions' ];
 		return header.map((key, index) => {
 			return <th key={index}>{key.toUpperCase()}</th>;
 		});
