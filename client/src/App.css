@@ -8,7 +8,8 @@
 }
 
 a {
-  color: aliceblue
+  color: aliceblue;
+  margin-right: 30px;
 }
 
 a:hover {
@@ -30,7 +31,7 @@ ul {
 }
 
 nav {
-  display: none;
+  /* display: none; */
 }
 
 ::selection {

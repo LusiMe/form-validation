@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const emailCheck = /[a-z0-9._%+!$&*=^|~#%'`?{}/-]+@([a-z0-9-]+\.){1,}([a-z]{2,16})/;
+const emailCheck = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 const phoneCheck = /^\d+$/;
 const nameCheck = /^[A-Za-z]*$/;
 
@@ -94,30 +94,41 @@ const Form = () => {
 	);
 
 	return (
-		<div className="row">
-			<h1 className="text-center">Form Validaton</h1>
-			<div>
-				<h3>First Name</h3>
-				<input placeholder="first name" value={firstName} onChange={(e) => setName(e.target.value)} />
-				<div style={{ display: errorName.length === 0 ? 'none' : 'block' }}>{errorName} </div>
+		<div>
+			<div className="tableLink">
+				<nav>
+					<Link to="/">Table</Link>
+				</nav>
+			</div>
+			<div className="row">
+				<h1 className="text-center">{_id ? 'Edit' : 'Add'} User</h1>
+				<div>
+					<h3>First Name</h3>
+					<input placeholder="first name" value={firstName} onChange={(e) => setName(e.target.value)} />
+					<div style={{ display: errorName.length === 0 ? 'none' : 'block' }}>{errorName} </div>
 
-				<h3>Second Name</h3>
-				<input placeholder="second name" value={secondName} onChange={(e) => setSecondName(e.target.value)} />
-				<div style={{ display: errorSecondName.length === 0 ? 'none' : 'block' }}>{errorSecondName} </div>
+					<h3>Second Name</h3>
+					<input
+						placeholder="second name"
+						value={secondName}
+						onChange={(e) => setSecondName(e.target.value)}
+					/>
+					<div style={{ display: errorSecondName.length === 0 ? 'none' : 'block' }}>{errorSecondName} </div>
 
-				<h3>Phone</h3>
-				<input placeholder="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-				<div style={{ display: errorPhone.length === 0 ? 'none' : 'block' }}>{errorPhone}</div>
+					<h3>Phone</h3>
+					<input placeholder="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+					<div style={{ display: errorPhone.length === 0 ? 'none' : 'block' }}>{errorPhone}</div>
 
-				<h3>Email</h3>
-				<input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-				<div style={{ display: errorEmail.length === 0 ? 'none' : 'block' }}>{errorEmail}</div>
+					<h3>Email</h3>
+					<input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+					<div style={{ display: errorEmail.length === 0 ? 'none' : 'block' }}>{errorEmail}</div>
 
-				<Link to="/tablePage">
-					<button className="verifyButton" onClick={() => save({ firstName, secondName, email, phone })}>
-						Verify
-					</button>
-				</Link>
+					<Link to="/">
+						<button className="verifyButton" onClick={() => save({ firstName, secondName, email, phone })}>
+							Save
+						</button>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

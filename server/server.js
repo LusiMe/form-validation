@@ -31,8 +31,6 @@ app.use(
 	})
 );
 
-const subscribersRouter = require('./routes/subscribers');
-
 // GET method route
 app.get('/form', async function(req, res) {
 	const filter = {};
@@ -58,7 +56,7 @@ app.post('/form', async function(request, response) {
 	const sv = new Form({
 		firstName: request.body.firstName,
 		secondName: request.body.secondName,
-		tel: request.body.tel,
+		phone: request.body.phone,
 		email: request.body.email
 	});
 

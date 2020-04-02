@@ -8,25 +8,14 @@ export default function App() {
 	return (
 		<Router>
 			<div className="wrapper">
-				<nav>
-					<ul>
-						<li>
-							<Link to="/formPage">Form</Link>
-						</li>
-						<li>
-							<Link to="/tablePage">Table</Link>
-						</li>
-					</ul>
-				</nav>
-
 				{/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
 				<Switch>
-					<Route path="/formPage/:_id">
-						<FormPage />
-					</Route>
-					<Route path="/tablePage">
+					<Route exact path="/">
 						<Table />
+					</Route>
+					<Route path="/formPage/:_id?">
+						<FormPage />
 					</Route>
 				</Switch>
 			</div>

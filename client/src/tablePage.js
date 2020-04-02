@@ -62,11 +62,7 @@ class Table extends Component {
 						<button className="removeButton" onClick={() => this.removeButtonOnClick(_id)}>
 							<img className="trash-icon" src={trashItem} />
 						</button>
-						<Link to="/formPage">
-							<button className="addButton">
-								<img className="add-icon" src={addItem} />
-							</button>
-						</Link>
+
 						<Link to={`/formPage/${_id}`}>
 							<button className="editButton">
 								<img className="edit-icon" src={editItem} />
@@ -89,6 +85,14 @@ class Table extends Component {
 		return (
 			<div>
 				<h1 id="title">Users</h1>
+
+				<h2 id="addButton">
+					<Link to="/formPage">
+						<button className="addButton">
+							<img className="add-icon" src={addItem} />
+						</button>
+					</Link>
+				</h2>
 				<table id="users">
 					<thead>
 						<tr>{this.renderTableHeader()}</tr>{' '}

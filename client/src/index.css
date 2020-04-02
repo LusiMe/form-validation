@@ -33,8 +33,9 @@ h3 {
 }
 
 .row {
-
-  text-align: center
+  text-align: center;
+  max-width: 500px;
+  padding: 0 450px;
 }
 
 p {
@@ -132,14 +133,19 @@ hr {
 }
 
 .verifyButton {
-  display: block;
   appearance: none;
   margin-top: 40px;
+  margin-left: 40px;
   border: 1px solid #333;
   margin-bottom: 20px;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 10px 100px;
   border-radius: 4px;
+}
+
+.tableLink {
+  display: flex;
+  justify-content: flex-end
 }
 
 div {

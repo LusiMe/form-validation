@@ -34,6 +34,11 @@
   color: white;
 }
 
+#addButton {
+  text-align: right;
+  margin-right: 5em;
+}
+
 tbody tr {
   display: table;
   width: 100%;
@@ -54,15 +59,17 @@ thead {
 }
 
 .removeButton,
-.addButton,
 .editButton {
   margin: 0;
   padding: 0;
+}
 
+.add-icon {
+  height: 45px;
+  padding: 0 15px;
 }
 
 .trash-icon,
-.add-icon,
 .edit-icon {
   width: 30px;
 }
